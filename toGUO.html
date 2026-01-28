@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday！</title>
+    <style>
+        body {
+    	    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+        .cake {
+            font-size: 50px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .message {
+            font-size: 24px;
+            margin: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="cake">🎂</div>
+    <div class="message" id="birthdayMessage"></div>
+    
+    <script>
+        const friendName = "果果果";
+        const messages = [
+            "年年都有今日~岁岁都有今朝~恭喜你~恭喜你~",
+            "当代问号千秋万代！永垂不朽！",
+            "Cheers to your best years!",
+            "WISH YOU ALL THE BEST!"
+        ];
+        
+        let display = `🎉  ${friendName} 生日快乐！ 🎉<br><br>`;
+        messages.forEach(msg => {
+            display += `✨ ${msg}✨<br>`;
+        });
+        
+        document.getElementById('birthdayMessage').innerHTML = display;
+        
+        // 添加一些特效
+        setInterval(() => {
+            const emojis = ['🎈', '🎁', '⭐', '💖', '🌸'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const span = document.createElement('span');
+            span.textContent = emoji;
+            span.style.cssText = `
+                position: fixed;
+                font-size: 20px;
+                left: ${Math.random() * 100}vw;
+                top: -20px;
+                animation: fall 5s linear;
+            `;
+            document.body.appendChild(span);
+            
+            setTimeout(() => span.remove(), 5000);
+        }, 300);
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to { transform: translateY(100vh) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
